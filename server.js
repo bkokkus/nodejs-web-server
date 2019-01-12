@@ -1,5 +1,6 @@
-//projeye dahil et
 var express = require("express");
+var middleware = require("./middleware");
+
 //expresi çalıştır. daha doğrusu instence si var.
 var app = express();
 var PORT = 3000;
@@ -11,21 +12,10 @@ var PORT = 3000;
 //     res.send("Merhaba Express");
 // })
 
-var middleware = {
-    requireAuthentication: function(req, res, next){
-        console.log("Özel route girildi!!!");
-        next();
-    },
-    logger : function(req, res, next) {
-        console.log(req.method + req.originalUrl);
-        next();
-    }
-}
-
 // app.use(middleware.requireAuthentication);
- app.use(middleware.logger);
+app.use(middleware.logger);
 
-app.get("/hakkimda", middleware.requireAuthentication, middleware.logger , function(req, res){
+app.get("/hakkimda", middleware.requireAuthentication , function(req, res){
     res.send("Hakkında Sayfası");
 })
 
