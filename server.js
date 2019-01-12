@@ -3,7 +3,7 @@ var middleware = require("./middleware");
 
 //expresi çalıştır. daha doğrusu instence si var.
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 //sayfaya get metodu ne gelirse gelsin. karşıla
 //buradaki function bir callbak gibi 
